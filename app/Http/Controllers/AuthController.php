@@ -22,6 +22,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $credentials = $request->only('name', 'age','username', 'email', 'password');
+
         $rules = [
             'name' => 'required|max:255',
             'age' => 'required|integer|between:10,100',
@@ -29,14 +30,18 @@ class AuthController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6',
         ];
+
         $validator = Validator::make($credentials, $rules);
         if($validator->fails()) {
             return response()->json(['success'=> false, 'error'=> $validator->messages()]);
         }
+
         $username = $request->username;
+        $name = $request->name;
         $email = $request->email;
         $password = $request->password;
-        User::create(
+
+        $user = User::create(
             [
                 'username' => $username,
                 'email' => $email,
@@ -44,7 +49,20 @@ class AuthController extends Controller
                 'plainpassword' => ($password)
             ]
         );
-        return $this->login($request);
+
+//        return $this->login($request);
+
+        $verification_code = str_random(30); //Generate verification code
+        DB::table('user_verifications')->insert(['user_id'=>$user->id,'token'=>$verification_code]);
+        $subject = "Please verify your email address.";
+        Mail::send('email.verify', ['name' => $name, 'verification_code' => $verification_code],
+            function($mail) use ($email, $name, $subject){
+                $mail->from(getenv('FROM_EMAIL_ADDRESS'), "From User/Company Name Goes Here");
+                $mail->to($email, $name);
+                $mail->subject($subject);
+            });
+        return response()->json(['success'=> true, 'message'=> 'Thanks for signing up! Please check your email to complete your registration.']);
+
     }
 
     /**
@@ -121,5 +139,35 @@ class AuthController extends Controller
         ]);
     }
 
+
+    /**
+     * API Verify User
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function verifyUser($verification_code)
+    {
+        $check = DB::table('user_verifications')->where('token',$verification_code)->first();
+
+        if(!is_null($check)){
+            $user = User::find($check->user_id);
+            if($user->is_verified == 1){
+                return response()->json([
+                    'success'=> true,
+                    'message'=> 'Account already verified..'
+                ]);
+            }
+
+            $user->update(['is_verified' => 1]);
+            DB::table('user_verifications')->where('token',$verification_code)->delete();
+            return response()->json([
+                'success'=> true,
+                'message'=> 'You have successfully verified your email address.'
+            ]);
+        }
+
+        return response()->json(['success'=> false, 'error'=> "Verification code is invalid."]);
+    }
 
 }
