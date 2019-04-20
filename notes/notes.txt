@@ -1,4 +1,141 @@
 
 done
 https://medium.com/mesan-digital/tutorial-4-how-to-build-a-laravel-5-4-jwt-powered-mobile-app-api-4c59109d35f
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>composer update
+Loading composer repositories with package information
+Updating dependencies (including require-dev)
+Package operations: 4 installs, 0 updates, 0 removals
+  - Installing symfony/polyfill-util (v1.11.0): Downloading (100%)
+  - Installing symfony/polyfill-php56 (v1.11.0): Downloading (100%)
+  - Installing namshi/jose (7.2.3): Downloading (100%)
+  - Installing tymon/jwt-auth (1.0.0-rc.1): Downloading (100%)
+namshi/jose suggests installing phpseclib/phpseclib (Allows to use Phpseclib as crypto engine, use version ^2.0.)
+Package phpunit/phpunit-mock-objects is abandoned, you should avoid using it. No replacement was suggested.
+Writing lock file
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postAutoloadDump
+> @php artisan package:discover
+Discovered Package: fideloper/proxy
+Discovered Package: laravel/tinker
+Discovered Package: nesbot/carbon
+Discovered Package: tymon/jwt-auth
+Package manifest generated successfully.
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+Copied File [\vendor\tymon\jwt-auth\config\config.php] To [\config\jwt.php]
+Publishing complete.
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan jwt:secret
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan migrate
+Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan make:controller AuthController
+Controller created successfully.
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan migrate:rollback
+Rolling back: 2014_10_12_100000_create_password_resets_table
+Rolled back:  2014_10_12_100000_create_password_resets_table
+Rolling back: 2014_10_12_000000_create_users_table
+Rolled back:  2014_10_12_000000_create_users_table
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan migrate
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan migrate:rollback
+Rolling back: 2014_10_12_100000_create_password_resets_table
+Rolled back:  2014_10_12_100000_create_password_resets_table
+Rolling back: 2014_10_12_000000_create_users_table
+Rolled back:  2014_10_12_000000_create_users_table
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan migrate
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan make:migration create_user_verifications_table
+Created Migration: 2019_04_20_045405_create_user_verifications_table
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan migrate
+Migrating: 2019_04_20_045405_create_user_verifications_table
+Migrated:  2019_04_20_045405_create_user_verifications_table
+
+
+
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>composer update
+Loading composer repositories with package information
+Updating dependencies (including require-dev)
+Package operations: 1 install, 0 updates, 0 removals
+  - Installing zizaco/entrust (dev-master ba92414): Downloading (100%)
+Package phpunit/phpunit-mock-objects is abandoned, you should avoid using it. No replacement was suggested.
+Writing lock file
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postAutoloadDump
+> @php artisan package:discover
+Discovered Package: fideloper/proxy
+Discovered Package: laravel/tinker
+Discovered Package: nesbot/carbon
+Discovered Package: tymon/jwt-auth
+Discovered Package: zizaco/entrust
+Package manifest generated successfully.
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan vendor:publish
+
+ Which provider or tag's files would you like to publish?:
+  [0 ] Publish files from all providers and tags listed below
+  [1 ] Provider: Fideloper\Proxy\TrustedProxyServiceProvider
+  [2 ] Provider: Illuminate\Mail\MailServiceProvider
+  [3 ] Provider: Illuminate\Notifications\NotificationServiceProvider
+  [4 ] Provider: Illuminate\Pagination\PaginationServiceProvider
+  [5 ] Provider: Laravel\Tinker\TinkerServiceProvider
+  [6 ] Provider: Tymon\JWTAuth\Providers\LaravelServiceProvider
+  [7 ] Provider: Zizaco\Entrust\EntrustServiceProvider
+  [8 ] Tag: config
+  [9 ] Tag: laravel-mail
+  [10] Tag: laravel-notifications
+  [11] Tag: laravel-pagination
+ > 7
+
+Copied File [\vendor\zizaco\entrust\src\config\config.php] To [\config\entrust.php]
+Publishing complete.
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan entrust:migration
+
+Tables: roles, role_user, permissions, permission_role
+A migration that creates 'roles', 'role_user', 'permissions', 'permission_role' tables will be created in database/migrations directory
+
+ Proceed with the migration creation? [Yes|no] (yes/no) [yes]:
+ >
+
+
+Creating migration...
+Migration successfully created!
+
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan make:migration create_clients_table
+Created Migration: 2019_04_20_060718_create_clients_table
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan make:migration create_jobs_table
+Created Migration: 2019_04_20_060730_create_jobs_table
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan make:migration create_candidates_table
+Created Migration: 2019_04_20_060738_create_candidates_table
+
+
+
 
