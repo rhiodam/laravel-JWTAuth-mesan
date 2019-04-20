@@ -38,11 +38,14 @@ class AuthController extends Controller
 
         $username = $request->username;
         $name = $request->name;
+        $age = $request->age;
         $email = $request->email;
         $password = $request->password;
 
         $user = User::create(
             [
+                'name' => $name,
+                'age' => $age,
                 'username' => $username,
                 'email' => $email,
                 'password' => Hash::make($password),
@@ -57,7 +60,7 @@ class AuthController extends Controller
         $subject = "Please verify your email address.";
         Mail::send('email.verify', ['name' => $name, 'verification_code' => $verification_code],
             function($mail) use ($email, $name, $subject){
-                $mail->from(getenv('FROM_EMAIL_ADDRESS'), "From User/Company Name Goes Here");
+                $mail->from(getenv('FROM_EMAIL_ADDRESS'), "dev.cerdas.skd@gmail.com");
                 $mail->to($email, $name);
                 $mail->subject($subject);
             });
@@ -130,10 +133,12 @@ class AuthController extends Controller
     public function recover(Request $request)
     {
         $user = User::where('email', $request->email)->first();
+
         if (!$user) {
             $error_message = "Your email address was not found.";
             return response()->json(['success' => false, 'error' => ['email'=> $error_message]], 401);
         }
+
         try {
             Password::sendResetLink($request->only('email'), function (Message $message) {
                 $message->subject('Your Password Reset Link');
@@ -143,6 +148,7 @@ class AuthController extends Controller
             $error_message = $e->getMessage();
             return response()->json(['success' => false, 'error' => $error_message], 401);
         }
+
         return response()->json([
             'success' => true, 'data'=> ['message'=> 'A reset email has been sent! Please check your email.']
         ]);
