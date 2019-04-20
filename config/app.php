@@ -168,6 +168,7 @@ return [
          * Package Service Providers...
          */
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -230,6 +231,9 @@ return [
 //        JWT
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+
+//        RBA
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
     ],
 
