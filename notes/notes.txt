@@ -139,3 +139,43 @@ Created Migration: 2019_04_20_060738_create_candidates_table
 
 
 
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan make:auth
+Authentication scaffolding generated successfully.
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan make:model Role -mcr
+Model created successfully.
+Created Migration: 2019_04_20_061551_create_roles_table
+Controller created successfully.
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan make:model Job -mcr
+Model created successfully.
+Created Migration: 2019_04_20_061646_create_jobs_table
+Controller created successfully.
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan make:model Permission -mc
+r
+Model created successfully.
+Created Migration: 2019_04_20_061658_create_permissions_table
+Controller created successfully.
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan make:model Client -mcr
+Model created successfully.
+Created Migration: 2019_04_20_061721_create_clients_table
+Controller created successfully.
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan make:model Candidate -mcr
+Model created successfully.
+Created Migration: 2019_04_20_061731_create_candidates_table
+Controller created successfully.
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan make:seeder PermissionSeeder
+Seeder created successfully.
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan db:seed --class=PermissionSeeder
+
+C:\xampp\htdocs\Github\tuts\laravel-JWTAuth-mesan>php artisan db:seed --class=DatabaseSeeder
+
+
+
