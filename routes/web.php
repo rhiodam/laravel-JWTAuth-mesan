@@ -22,3 +22,7 @@ Route::post('password/reset', 'Auth\ResetPasswordController@postReset')->name('p
 
 Route::get('user/verify/{verification_code}', 'AuthController@verifyUser');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
